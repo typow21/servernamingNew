@@ -4,7 +4,7 @@ from detailsapp.models import UserDetails
 from django.template import loader
 from django.http import HttpResponse
 from django.forms import modelformset_factory
-from . forms import UserModelForm
+from .forms import UserModelForm
 # from .forms import ServerNameForm
 # from .models import Server
 
