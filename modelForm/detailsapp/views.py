@@ -1,6 +1,12 @@
 from django.shortcuts import render
-from .forms import ServerNameForm
-from .models import Server
+from django.db import models
+from detailsapp.models import UserDetails
+from django.template import loader
+from django.http import HttpResponse
+from django.forms import modelformset_factory
+from . forms import UserModelForm
+# from .forms import ServerNameForm
+# from .models import Server
 
 def results(request):
     return render(request, "detailsapp/template/results.html", {})
@@ -10,13 +16,12 @@ def home(request):
     
 def form(request):
     if request.method == 'POST':
-        form = ServerNameForm(request.POST)
+        form = UserModelForm(request.POST)
         if form.is_valid():
-            value = form.cleaned_data.get("OS")
+            u = form.save()
+            users - UserDetails.objects.all()
+            return render(request, 'display.html', {'users':users})
     else:
-        form = ServerNameForm()
-    Server()
-    Server.OS = request.POST.get('OS')
-    print(Server.OS)
-    return render(request, "detailsapp/template/form.html", {'form': form})
+        form_class = UserModelForm
+        return render(request, 'userdetails.html' , {'form':form_class,} )
         

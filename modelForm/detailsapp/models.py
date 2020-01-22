@@ -2,8 +2,10 @@
 
 from django.db import models
 
-class Server(models.Model):
-    OS = models.CharField(max_length = 100)
-    purpose = models.CharField(max_length = 100)
-    role = models.CharField(max_length = 100)
-    # name = os + purpose + role
+UserDetails(models.Model):
+    title = models.CharField(max_length = 100)
+    gender = models.CharField(max_length = 100)
+    notes = models.CharField(max_length = 100)
+
+    def __str__(self):
+        return self.title
