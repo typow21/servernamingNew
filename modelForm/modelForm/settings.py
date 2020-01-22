@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'modelFrom.wsgi.application'
+WSGI_APPLICATION = 'modelForm.wsgi.application'
 
 
 # Database

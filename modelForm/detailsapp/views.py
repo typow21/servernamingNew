@@ -14,14 +14,14 @@ def results(request):
 def home(request):
     return render(request, "detailsapp/template/home.html", {})
     
-def form(request):
+def userDetails(request):
     if request.method == 'POST':
         form = UserModelForm(request.POST)
         if form.is_valid():
             u = form.save()
-            users - UserDetails.objects.all()
-            return render(request, 'display.html', {'users':users})
+            users = UserDetails.objects.all()
+            return render(request, 'detailsapp/template/display.html', {'users':users})
     else:
         form_class = UserModelForm
-        return render(request, 'userdetails.html' , {'form':form_class,} )
+        return render(request, 'detailsapp/template/userdetails.html' , {'form':form_class,} )
         

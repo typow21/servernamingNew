@@ -2,7 +2,7 @@
 
 from django.db import models
 
-UserDetails(models.Model):
+class UserDetails(models.Model):
     title = models.CharField(max_length = 100)
     gender = models.CharField(max_length = 100)
     notes = models.CharField(max_length = 100)
