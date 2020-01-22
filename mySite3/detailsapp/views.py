@@ -3,10 +3,10 @@ from .forms import ServerNameForm
 from .models import Server
 
 def results(request):
-    return render(request, "myapp/template/results.html", {})
+    return render(request, "detailsapp/template/results.html", {})
 
 def home(request):
-    return render(request, "myapp/template/home.html", {})
+    return render(request, "detailsapp/template/home.html", {})
     
 def form(request):
     if request.method == 'POST':
@@ -18,5 +18,5 @@ def form(request):
     Server()
     Server.OS = request.POST.get('OS')
     print(Server.OS)
-    return render(request, "myapp/template/form.html", {'form': form})
+    return render(request, "detailsapp/template/form.html", {'form': form})
         
