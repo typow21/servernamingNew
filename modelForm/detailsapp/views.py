@@ -20,6 +20,7 @@ def userDetails(request):
         if form.is_valid():
             u = form.save()
             users = UserDetails.objects.all()
+            print(users)
             return render(request, 'detailsapp/template/display.html', {'users':users})
     else:
         form_class = UserModelForm

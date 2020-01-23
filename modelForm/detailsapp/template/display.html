@@ -9,8 +9,7 @@
         <table>
             {% for item in users %}
             <tr>
-                <td><b>Title:</b>{{ item.title}}</td>
-                <td><b>Gender:</b>{{item.gender|default: "NA"}}</td>
+                <td><b>Title:</b>{{item.title}}</td>
                 <td><b>Notes:</b>{{item.notes}}</td>
             </tr>
             <tr>
