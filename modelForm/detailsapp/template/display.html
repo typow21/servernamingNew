@@ -2,20 +2,16 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>ModelForm Tutorial</title>
+        <title>Server Naming</title>
     </head>
     <body>
-        <h2>All User Details</h2>
-        <table>
+        <h1>Server Names *Do not reload this page*</h1>
+        <a href="/userdetails/">Create another server name.</a>
+        <br>
             {% for item in users %}
-            <tr>
-                <td><b>Title:</b>{{item.title}}</td>
-                <td><b>Notes:</b>{{item.notes}}</td>
-            </tr>
-            <tr>
-                <td colspan = "2" class = "divider"></td><hr/></td>
-            </tr>
+                <br>
+                <td><b></b>{{item.tu}}{{item.os}}{{item.purpose}}{{item.role}}{{item.sequence}}</td>
+                <br>
             {% endfor %}
-        </table>
     </body>
 </html>

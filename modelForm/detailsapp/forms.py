@@ -4,7 +4,7 @@ from detailsapp.models import UserDetails
 class UserModelForm(ModelForm):
         class Meta:
                 model = UserDetails
-                fields = ['title', 'notes']
+                fields = ['os','purpose','role']
                 
 
 
