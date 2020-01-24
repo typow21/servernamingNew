@@ -15,29 +15,29 @@ class UserDetails(models.Model):
     prd = "001"
     np = "100"
     test = "111"
-    OS  = (
+    OpSys  = (
     (blank,"--"),
     (linux, "Linux/Unix"),
     (windows, "Windows"),
     )
     PURPOSE = (
     (blank,"--"),
-    (prd, "prd"),
-    (np, "np"),
-    (test, "test"),
+    (prd, "Production"),
+    (np, "Non-Production"),
+    (test, "Test"),
     )
     ROLE = (
     (blank,"--"),
-    (web, "web"),
-    (app, "app"),
-    (database, "db"),
-    (storage, "storage"),
+    (web, "Web"),
+    (app, "Application"),
+    (database, "Database"),
+    (storage, "Storage"),
     )
 
     tu = models.CharField(max_length = 2, default = "tu")
-    os = models.CharField(
+    OS = models.CharField(
         max_length = 10,
-        choices = OS,
+        choices = OpSys,
         default = blank,
     )
     purpose = models.CharField(
@@ -51,5 +51,4 @@ class UserDetails(models.Model):
         default = blank,
     )
     sequence = models.CharField(max_length = 100, default = "000")
-
 

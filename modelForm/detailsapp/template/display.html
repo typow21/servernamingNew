@@ -6,11 +6,13 @@
     </head>
     <body>
         <h1>Server Names *Do not reload this page*</h1>
+        <hr>
         <a href="/userdetails/">Create another server name.</a>
         <br>
-            {% for item in users %}
+        <br>
+            {% for server in servers %}
                 <br>
-                <td><b></b>{{item.tu}}{{item.os}}{{item.purpose}}{{item.role}}{{item.sequence}}</td>
+                <td><b></b>{{server.tu}}{{server.OS}}{{server.purposes}}{{server.role}}{{server.sequence}}</td>
                 <br>
             {% endfor %}
     </body>
