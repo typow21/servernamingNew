@@ -1,7 +1,11 @@
 from django.forms import ModelForm
 from detailsapp.models import UserDetails 
-
+from django import forms
 class UserModelForm(ModelForm):
+        # turn into radio buttons
+        # osChoices = forms.ChoiceField(choices=UserDetails.OpSys, widget = forms.RadioSelect())
+        # purposeChoice = forms.ChoiceField(choices=UserDetails.PURPOSE, widget = forms.RadioSelect())
+        # roleChoice = forms.ChoiceField(choices=UserDetails.ROLE, widget = forms.RadioSelect())
         class Meta:
                 model = UserDetails
                 fields = ['OS','purpose','role']

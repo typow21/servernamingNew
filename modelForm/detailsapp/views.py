@@ -21,6 +21,7 @@ def userDetails(request):
         if form.is_valid():
             u = form.save()
             currentInstance = UserDetails.objects.last()
+            # raise error if you submit a blank form
             print("\n")
             print("\nCurrent Server: ", currentInstance)
             currentInstSequence = currentInstance.sequence

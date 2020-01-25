@@ -15,6 +15,7 @@ class UserDetails(models.Model):
     prd = "001"
     np = "100"
     test = "111"
+    
     OpSys  = (
     (blank,"--"),
     (linux, "Linux/Unix"),
@@ -51,4 +52,5 @@ class UserDetails(models.Model):
         default = blank,
     )
     sequence = models.CharField(max_length = 100, default = "000")
+
 
