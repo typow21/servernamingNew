@@ -2,18 +2,115 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Server Naming</title>
+        <title>Windows Server Naming</title>
     </head>
     <body>
-        <h1>Server Names *Do not reload this page*</h1>
+        <h1 style="text-align: center;">Windows Server Names *Do not reload this page*</h1>
+        <h2 style="text-align: center;">Most recent server: {{currentServer.serverName}}</h2>
         <hr>
-        <a href="/userdetails/">Create another server name.</a>
+        <a href="/userdetails/" style="font-size:x-large ;">Create another server name.</a>
         <br>
         <br>
-            {% for server in servers %}
-                <br>
-                <td><b></b>{{server.tu}}{{server.OS}}{{server.purposes}}{{server.role}}{{server.sequence}}</td>
-                <br>
-            {% endfor %}
+        <table border="1" width = "100%">
+        <tr>
+            <td>
+                <b><label>Production</label></b><br>
+                <b><label>Web</label></b>
+                <hr>
+                {% for server in servers %}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Production</label></b><br>
+                <b><label>App</label></b>
+                <hr>
+                {% for server in servers %}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Production</label></b><br>
+                <b><label>Database</label></b>
+                <hr>
+                {% for server in servers %}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Production</label></b><br>
+                <b><label>Storage</label></b>
+                <hr>
+                {% for server in servers %}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Non-Production</label></b><br>
+                <b><label>Web</label></b>
+                <hr>
+                {% for server in servers %}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Non-Production</label></b><br>
+                <b><label>App</label></b>
+                <hr>
+                {% for server in servers %}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Non-Production</label></b><br>
+                <b><label>Database</label></b>
+                <hr>
+                {% for server in servers %}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Non-Production</label></b><br>
+                <b><label>Storage</label></b>
+                <hr>
+                {% for server in servers %}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Test</label></b><br>
+                <b><label>Web</label></b>
+                <hr>
+                {% for server in servers %}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Test</label></b><br>
+                <b><label>App</label></b>
+                <hr>
+                {% for server in servers %}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Test</label></b><br>
+                <b><label>Database</label></b>
+                <hr>
+                {% for server in servers %}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Test</label></b><br>
+                <b><label>Storage</label></b>
+                <hr>
+                {% for server in servers %}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td>
+        </tr>
+        </table>
     </body>
 </html>
