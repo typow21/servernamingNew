@@ -11,13 +11,16 @@ from detailsapp import models
 # from .forms import ServerNameForm
 # from .models import Server
 
-def results(request):
-    return render(request, "detailsapp/template/results.html", {})
+def displayserver(request):
+    return render(request, "detailsapp/template/displayserver.html", {})
 
-def home(request):
-    return render(request, "detailsapp/template/home.html", {})
+def displaylinux(request):
+    return render(request, "detailsapp/template/displaylinux.html", {})
     
-def serverDetails(request):
+def displaywindows(request):
+    return render(request, "detailsapp/template/displaywindows.html",{})
+
+def form(request):
     if request.method == 'POST':
         form = ServerModelForm(request.POST)
         if form.is_valid():

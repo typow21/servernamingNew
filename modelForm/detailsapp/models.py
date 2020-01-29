@@ -3,7 +3,6 @@ from django.db import models
 
 class ServerDetails(models.Model):
     blank = "--"
-    # 
     linux = "35"
     windows = "30"
     
