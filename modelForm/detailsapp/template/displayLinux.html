@@ -2,30 +2,32 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Windows Server Naming</title>
+        <title>Linux Server Naming</title>
     </head>
     <body>
-        <h1 style="text-align: center;">Windows Server Names *Do not reload this page*</h1>
+        <h1 style="text-align: center;">Linux Server Names *Do not reload this page*</h1>
         <h2 style="text-align: center;">Most recent server: {{currentServer.serverName}}</h2>
         <hr>
         <a href="/userdetails/" style="font-size:x-large ;">Create another server name.</a>
         <br>
         <br>
         <table border="1" width = "100%">
-        <tr>
+        <tr valign="top">
             <td>
                 <b><label>Production</label></b><br>
                 <b><label>Web</label></b>
                 <hr>
-                {% for server in servers %}
+                {% for server in columnSets.12 %}
                     {{server.serverName}}
+                    <br>
+                    <!-- Alias: {{server.alias}} future feature-->
                     <hr>
                 {% endfor %}
             </td><td>
                 <b><label>Production</label></b><br>
                 <b><label>App</label></b>
                 <hr>
-                {% for server in servers %}
+                {% for server in columnSets.13%}
                     {{server.serverName}}
                     <hr>
                 {% endfor %}
@@ -33,7 +35,7 @@
                 <b><label>Production</label></b><br>
                 <b><label>Database</label></b>
                 <hr>
-                {% for server in servers %}
+                {% for server in columnSets.14%}
                     {{server.serverName}}
                     <hr>
                 {% endfor %}
@@ -41,7 +43,7 @@
                 <b><label>Production</label></b><br>
                 <b><label>Storage</label></b>
                 <hr>
-                {% for server in servers %}
+                {% for server in columnSets.15%}
                     {{server.serverName}}
                     <hr>
                 {% endfor %}
@@ -49,7 +51,7 @@
                 <b><label>Non-Production</label></b><br>
                 <b><label>Web</label></b>
                 <hr>
-                {% for server in servers %}
+                {% for server in columnSets.16%}
                     {{server.serverName}}
                     <hr>
                 {% endfor %}
@@ -57,7 +59,7 @@
                 <b><label>Non-Production</label></b><br>
                 <b><label>App</label></b>
                 <hr>
-                {% for server in servers %}
+                {% for server in columnSets.17%}
                     {{server.serverName}}
                     <hr>
                 {% endfor %}
@@ -65,7 +67,7 @@
                 <b><label>Non-Production</label></b><br>
                 <b><label>Database</label></b>
                 <hr>
-                {% for server in servers %}
+                {% for server in columnSets.18%}
                     {{server.serverName}}
                     <hr>
                 {% endfor %}
@@ -73,7 +75,7 @@
                 <b><label>Non-Production</label></b><br>
                 <b><label>Storage</label></b>
                 <hr>
-                {% for server in servers %}
+                {% for server in columnSets.19%}
                     {{server.serverName}}
                     <hr>
                 {% endfor %}
@@ -81,7 +83,7 @@
                 <b><label>Test</label></b><br>
                 <b><label>Web</label></b>
                 <hr>
-                {% for server in servers %}
+                {% for server in columnSets.20%}
                     {{server.serverName}}
                     <hr>
                 {% endfor %}
@@ -89,7 +91,7 @@
                 <b><label>Test</label></b><br>
                 <b><label>App</label></b>
                 <hr>
-                {% for server in servers %}
+                {% for server in columnSets.21%}
                     {{server.serverName}}
                     <hr>
                 {% endfor %}
@@ -97,7 +99,7 @@
                 <b><label>Test</label></b><br>
                 <b><label>Database</label></b>
                 <hr>
-                {% for server in servers %}
+                {% for server in columnSets.22%}
                     {{server.serverName}}
                     <hr>
                 {% endfor %}
@@ -105,7 +107,7 @@
                 <b><label>Test</label></b><br>
                 <b><label>Storage</label></b>
                 <hr>
-                {% for server in servers %}
+                {% for server in columnSets.23%}
                     {{server.serverName}}
                     <hr>
                 {% endfor %}

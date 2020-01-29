@@ -3,6 +3,7 @@ from django.db import models
 
 class ServerDetails(models.Model):
     blank = "--"
+    # 
     linux = "35"
     windows = "30"
     
@@ -52,7 +53,9 @@ class ServerDetails(models.Model):
     )
     sequence = models.CharField(max_length = 100, default = "000")
     serverName = models.CharField(max_length = 100, default = "")
-    classification = models.CharField(max_length = 15, default ="")
+    ident = models.CharField(max_length = 15, default ="")
+    # alias = models.CharField(max_length = 15, default ="Alias") future feature
+    print("ident",ident)
     def assignName(self):
         serverName = self.tu + self.OS + self.purpose + self.role + self.sequence
         return serverName
@@ -65,9 +68,19 @@ def classifyServer(currentInstance):
                 "3510020":"lnw", "3510021": "lna", "3510022": "lnd", "3510023": "lns", #linux non prod
                 "3500120":"lpw", "3500121": "lpa","3500122": "lpd", "3500123": "lps",  #linux prod
                 "3511120":"ltw", "3511121": "lta","3511122": "ltd", "3500123": "lts"} #linux test
-    currentInstance.classification = classifier.get(currentInstance.OS+currentInstance.purpose+currentInstance.role)
-    print(currentInstance.classification)
+    currentInstance.ident = classifier.get(currentInstance.OS+currentInstance.purpose+currentInstance.role)
+    print("classification: ", currentInstance.ident)
 
+def createArrayOfSets(servers):
+    columnSets = [servers.filter(ident = "wnw"),servers.filter(ident = "wna"),servers.filter(ident = "wnd"),
+    servers.filter(ident = "wns"),servers.filter(ident = "wpw"),servers.filter(ident = "wpa"),
+    servers.filter(ident = "wpd"),servers.filter(ident = "wps"),servers.filter(ident = "wtw"),
+    servers.filter(ident = "wta"),servers.filter(ident = "wtd"),servers.filter(ident = "wts"),
+    servers.filter(ident = "lnw"),servers.filter(ident = "lna"),servers.filter(ident = "lnd"),
+    servers.filter(ident = "lns"),servers.filter(ident = "lpw"),servers.filter(ident = "lpa"),
+    servers.filter(ident = "lpd"),servers.filter(ident = "lps"),servers.filter(ident = "ltw"),
+    servers.filter(ident = "lta"),servers.filter(ident = "ltd"),servers.filter(ident = "lts")]
+    return columnSets
 
 def checkDuplicates(currentInstance):
     duplicate = False
