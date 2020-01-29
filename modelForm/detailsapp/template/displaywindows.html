@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Windows Server Naming</title>
+    </head>
+    <body>
+        <h1 style="text-align: center;">Windows Server Names *Do not reload this page*</h1>
+        <h2 style="text-align: center;">Most recent server: {{currentServer.serverName}}</h2>
+        <hr>
+        <a href="/userdetails/" style="font-size:x-large ;">Create another server name.</a>
+        <br>
+        <br>
+        <table border="1" width = "100%">
+        <tr valign="top">
+            <td>
+                <b><label>Production</label></b><br>
+                <b><label>Web</label></b>
+                <hr>
+                {% for server in columnSets.0 %}
+                    {{server.serverName}}
+                    <br>
+                    <!-- Alias: {{server.alias}} future feature-->
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Production</label></b><br>
+                <b><label>App</label></b>
+                <hr>
+                {% for server in columnSets.1%}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Production</label></b><br>
+                <b><label>Database</label></b>
+                <hr>
+                {% for server in columnSets.2%}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Production</label></b><br>
+                <b><label>Storage</label></b>
+                <hr>
+                {% for server in columnSets.3%}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Non-Production</label></b><br>
+                <b><label>Web</label></b>
+                <hr>
+                {% for server in columnSets.4%}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Non-Production</label></b><br>
+                <b><label>App</label></b>
+                <hr>
+                {% for server in columnSets.5%}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Non-Production</label></b><br>
+                <b><label>Database</label></b>
+                <hr>
+                {% for server in columnSets.6%}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Non-Production</label></b><br>
+                <b><label>Storage</label></b>
+                <hr>
+                {% for server in columnSets.7%}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Test</label></b><br>
+                <b><label>Web</label></b>
+                <hr>
+                {% for server in columnSets.8%}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Test</label></b><br>
+                <b><label>App</label></b>
+                <hr>
+                {% for server in columnSets.9%}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Test</label></b><br>
+                <b><label>Database</label></b>
+                <hr>
+                {% for server in columnSets.10%}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td><td>
+                <b><label>Test</label></b><br>
+                <b><label>Storage</label></b>
+                <hr>
+                {% for server in columnSets.11%}
+                    {{server.serverName}}
+                    <hr>
+                {% endfor %}
+            </td>
+        </tr>
+        </table>
+    </body>
+</html>

@@ -32,14 +32,21 @@ def serverDetails(request):
             while(models.checkDuplicates(currentInstance)):
                 currentInstance.sequence = models.updateSequence(currentInstance)
             currentInstance.serverName = currentInstance.assignName()
-            currentInstance.save()
             serverName = currentInstance.assignName()
             print("Current Server Name: " , serverName)
             models.classifyServer(currentInstance)
             servers = ServerDetails.objects.all()
-            print(ServerDetails.objects.last().serverName)
+            currentInstance.save()
+            print("Current server name 2:",ServerDetails.objects.last().serverName)
             # serverTypes --> have a function return a dictionary of all types of servers
-            return render(request, 'detailsapp/template/display.html', {'servers':servers, 'currentServer':currentInstance})
+            columnSets = models.createArrayOfSets(servers) 
+            print("column sets", columnSets[0])
+            if (currentInstance.ident[0] == "w"):
+                print("windows\n")
+                return render(request, 'detailsapp/template/displaywindows.html', {'servers':servers, 'currentServer':currentInstance, 'columnSets':columnSets})
+            else:
+                print("linux\n")
+                return render(request, 'detailsapp/template/displaylinux.html', {'servers':servers, 'currentServer':currentInstance, 'columnSets':columnSets})
     else:
         form_class = ServerModelForm
         return render(request, 'detailsapp/template/serverDetails.html' , {'form':form_class,} )
