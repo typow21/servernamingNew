@@ -61,24 +61,23 @@ class ServerDetails(models.Model):
 
 def classifyServer(currentInstance):
     #first char = os :: second char: purpose :: third char: role
-    classifier = {"3010020": "wnw", "3010021": "wna", "3010022": "wnd", "3010023": "wns", #windows non prod
-                "3000120":"wpw", "3000121": "wpa","3000122": "wpd", "3000123": "wps",  #windows prod
-                "3011120":"wtw", "3011121": "wta","3011122": "wtd", "3000123": "wts", #windos test
+    classifier={"3000120":"wpw", "3000121": "wpa", "3000122": "wpd", "3000123": "wps",  #windows prod
+                "3010020":"wnw", "3010021": "wna", "3010022": "wnd", "3010023": "wns", #windows non prod
+                "3011120":"wtw", "3011121": "wta", "3011122": "wtd", "3011123": "wts", #windos test
+                "3500120":"lpw", "3500121": "lpa", "3500122": "lpd", "3500123": "lps",  #linux prod
                 "3510020":"lnw", "3510021": "lna", "3510022": "lnd", "3510023": "lns", #linux non prod
-                "3500120":"lpw", "3500121": "lpa","3500122": "lpd", "3500123": "lps",  #linux prod
-                "3511120":"ltw", "3511121": "lta","3511122": "ltd", "3500123": "lts"} #linux test
+                "3511120":"ltw", "3511121": "lta", "3511122": "ltd", "3511123": "lts"} #linux test
     currentInstance.ident = classifier.get(currentInstance.OS+currentInstance.purpose+currentInstance.role)
     print("classification: ", currentInstance.ident)
 
 def createArrayOfSets(servers):
-    columnSets = [servers.filter(ident = "wnw"),servers.filter(ident = "wna"),servers.filter(ident = "wnd"),
-    servers.filter(ident = "wns"),servers.filter(ident = "wpw"),servers.filter(ident = "wpa"),
-    servers.filter(ident = "wpd"),servers.filter(ident = "wps"),servers.filter(ident = "wtw"),
-    servers.filter(ident = "wta"),servers.filter(ident = "wtd"),servers.filter(ident = "wts"),
-    servers.filter(ident = "lnw"),servers.filter(ident = "lna"),servers.filter(ident = "lnd"),
-    servers.filter(ident = "lns"),servers.filter(ident = "lpw"),servers.filter(ident = "lpa"),
-    servers.filter(ident = "lpd"),servers.filter(ident = "lps"),servers.filter(ident = "ltw"),
-    servers.filter(ident = "lta"),servers.filter(ident = "ltd"),servers.filter(ident = "lts")]
+    columnSets = [
+    servers.filter(ident = "wpw"),servers.filter(ident = "wpa"),servers.filter(ident = "wpd"),servers.filter(ident = "wps"),
+    servers.filter(ident = "wnw"),servers.filter(ident = "wna"),servers.filter(ident = "wnd"),servers.filter(ident = "wns"),
+    servers.filter(ident = "wtw"),servers.filter(ident = "wta"),servers.filter(ident = "wtd"),servers.filter(ident = "wts"),
+    servers.filter(ident = "lpw"),servers.filter(ident = "lpa"),servers.filter(ident = "lpd"),servers.filter(ident = "lps"),
+    servers.filter(ident = "lnw"),servers.filter(ident = "lna"),servers.filter(ident = "lnd"),servers.filter(ident = "lns"),
+    servers.filter(ident = "ltw"),servers.filter(ident = "lta"),servers.filter(ident = "ltd"),servers.filter(ident = "lts")]
     return columnSets
 
 def checkDuplicates(currentInstance):
