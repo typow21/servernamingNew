@@ -27,6 +27,9 @@ def displaywindows(request):
     currentInstance = ServerDetails.objects.last()
     return render(request, "detailsapp/template/displaywindows.html", {'columnSets':columnSets, 'currentServer':currentInstance})
 
+# add a delete button
+# add an export option
+
 def form(request):
     if request.method == 'POST':
         form = ServerModelForm(request.POST)
@@ -36,8 +39,11 @@ def form(request):
             # raise error if you submit a blank form
             currentInstSequence = currentInstance.sequence
             # i feel like this should be done in the model
+            # this makes the first server name end in a 1 when it should end in a zero.
             while(models.checkDuplicates(currentInstance)):
                 currentInstance.sequence = models.updateSequence(currentInstance)
+                print("updating sequence")
+
             currentInstance.serverName = currentInstance.assignName()
             serverName = currentInstance.assignName()
 

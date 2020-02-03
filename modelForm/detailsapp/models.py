@@ -53,21 +53,22 @@ class ServerDetails(models.Model):
     sequence = models.CharField(max_length = 100, default = "000")
     serverName = models.CharField(max_length = 100, default = "")
     ident = models.CharField(max_length = 15, default ="")
-    # alias = models.CharField(max_length = 15, default ="Alias") future feature
+    # alias = models.CharField(max_length = 15, default="Alias") future feature
+    #Status = models.CharField(max_length = 30, default = "running")
     print("ident",ident)
     def assignName(self):
-        serverName = self.tu + self.OS + self.purpose + self.role + self.sequence
+        serverName = self.tu + self.purpose + self.role + self.OS + self.sequence
         return serverName
 
 def classifyServer(currentInstance):
     #first char = os :: second char: purpose :: third char: role
-    classifier={"3000120":"wpw", "3000121": "wpa", "3000122": "wpd", "3000123": "wps",  #windows prod
-                "3010020":"wnw", "3010021": "wna", "3010022": "wnd", "3010023": "wns", #windows non prod
-                "3011120":"wtw", "3011121": "wta", "3011122": "wtd", "3011123": "wts", #windos test
-                "3500120":"lpw", "3500121": "lpa", "3500122": "lpd", "3500123": "lps",  #linux prod
-                "3510020":"lnw", "3510021": "lna", "3510022": "lnd", "3510023": "lns", #linux non prod
-                "3511120":"ltw", "3511121": "lta", "3511122": "ltd", "3511123": "lts"} #linux test
-    currentInstance.ident = classifier.get(currentInstance.OS+currentInstance.purpose+currentInstance.role)
+    classifier={"0012030":"wpw", "0012130": "wpa", "0012230": "wpd", "0012330": "wps",  #windows prod
+                "1002030":"wnw", "1002130": "wna", "1002230": "wnd", "1002330": "wns", #windows non prod
+                "1112030":"wtw", "1112130": "wta", "1112230": "wtd", "1112330": "wts", #windos test
+                "0012035":"lpw", "0012135": "lpa", "0012235": "lpd", "0012335": "lps",  #linux prod
+                "1002035":"lnw", "1002135": "lna", "1002235": "lnd", "1002335": "lns", #linux non prod
+                "1112035":"ltw", "1112135": "lta", "1112235": "ltd", "1112335": "lts"} #linux test
+    currentInstance.ident = classifier.get(currentInstance.purpose+currentInstance.role+currentInstance.OS)
     print("classification: ", currentInstance.ident)
 
 def createArrayOfSets(servers):
@@ -88,7 +89,7 @@ def checkDuplicates(currentInstance):
                                 purpose = currentInstance.purpose,
                                     role = currentInstance.role,
                                         sequence = currentInstance.sequence).count()
-    if numOfMatches >= 1:
+    if numOfMatches > 1:
         if numOfMatches >= 2:
             print("Error: Duplicate server name.")
             # add a js alert here as a notice
@@ -106,7 +107,7 @@ def updateSequence(currentInstance):
     thirdDig = int(currentInstSequence[2])
     if thirdDig < 9: #if less than 9
         thirdDig += 1 # increment by one
-        # print("\treached 2")
+        print("\treached 2")
         # print("\t", thirdDig)
     else: #if number is 9
         # print("reached 3")
