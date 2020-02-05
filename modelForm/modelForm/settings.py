@@ -77,6 +77,9 @@ WSGI_APPLICATION = 'modelForm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'HOST': 'np-iosdb01.temple.edu',
+        # 'user'
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
