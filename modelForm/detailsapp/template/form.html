@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-<h2>Server Naming</h2>
-
-<form action="/results/" method="post">
-	{% csrf_token %}
-	{{form}}
-	<input type="submit" value="Submit">
-  </fieldset>
-</form>
-{{value}}
+	<nav>
+		<button onclick="window.location.href = '/home/';" style="font-size: large;">Home</button>
+		<button onclick="window.location.href = '/form/';" style="font-size: large;">Server Naming Form</button>
+		<button onclick="window.location.href = '/displayserver/';"" style="font-size: large;">Last created server name</button>
+		<button onclick="window.location.href = '/displaylinux/';" style="font-size: large;">Linux Servers</button>
+		<button onclick="window.location.href = '/displaywindows/';" style="font-size: large;">Windows Servers</button>
+		<button onclick="window.location.href = '/admin/';" style="font-size: large;">Admin</button>
+	</nav>
+	<hr>
+	<h2>Server Naming</h2>
+	<hr>
+	<form action="/displayserver/" method="post">
+		{% csrf_token %}
+		<table>
+			{{form.as_table}}
+		</table>
+		<input type="submit" value="Submit">
+	</fieldset>
+	</form>
+	{{value}}
 
 </body>
 </html>
