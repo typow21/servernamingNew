@@ -4,9 +4,9 @@ from django import forms
 
 class ServerModelForm(ModelForm):
         # turn into radio buttons
-        # osChoices = forms.ChoiceField(choices=UserDetails.OpSys, widget = forms.RadioSelect())
-        # purposeChoice = forms.ChoiceField(choices=UserDetails.PURPOSE, widget = forms.RadioSelect())
-        # roleChoice = forms.ChoiceField(choices=UserDetails.ROLE, widget = forms.RadioSelect())
+        # osChoices = forms.ChoiceField(choices=ServerDetails.OpSys, widget = forms.RadioSelect())
+        # purposeChoice = forms.ChoiceField(choices=ServerDetails.PURPOSE, widget = forms.RadioSelect())
+        # roleChoice = forms.ChoiceField(choices=ServerDetails.ROLE, widget = forms.RadioSelect())
         class Meta:
                 model = ServerDetails
                 fields = ['OS','purpose','role']

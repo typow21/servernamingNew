@@ -11,6 +11,9 @@ from detailsapp import models
 # from .forms import ServerNameForm
 # from .models import Server
 
+def home(request):
+    return render(request, "detailsapp/template/index.html", {})
+
 def displayserver(request):
     currentInstance = ServerDetails.objects.last()
     return render(request, "detailsapp/template/displayserver.html", {'currentServer':currentInstance})
@@ -66,4 +69,4 @@ def form(request):
             # return HttpResponseRedirect('/displayserver/')
     else:
         form_class = ServerModelForm
-        return render(request, 'detailsapp/template/serverDetails.html' , {'form':form_class,} )
+        return render(request, 'detailsapp/template/form.html' , {'form':form_class,} )

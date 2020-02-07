@@ -4,6 +4,7 @@ from django.contrib import admin
 from detailsapp import views as detailsapp_views
 
 urlpatterns = [
+    path('home/', detailsapp_views.home),
     path('form/', detailsapp_views.form),
     path('displaywindows/', detailsapp_views.displaywindows),
     path('displaylinux/', detailsapp_views.displaylinux),
