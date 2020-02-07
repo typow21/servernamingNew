@@ -60,13 +60,13 @@ def form(request):
             #ident is the naming key for groups of servers
             columnSets = models.createArrayOfSets(servers) 
             print("column sets", columnSets[0])
-            # if (currentInstance.ident[0] == "w"):
-            #     print("windows\n")
-            #     return HttpResponseRedirect('/displaywindows')
-            # else:
-            #     print("linux\n")
-            #     return HttpResponseRedirect('/displaylinux/')    
-            return HttpResponseRedirect('/displayserver/')
+            if (currentInstance.ident[0] == "w"):
+                print("windows\n")
+                return HttpResponseRedirect('/displaywindows/')
+            else:
+                print("linux\n")
+                return HttpResponseRedirect('/displaylinux/')    
+            # return HttpResponseRedirect('/displayserver/')
     else:
         form_class = ServerModelForm
         return render(request, 'detailsapp/template/form.html' , {'form':form_class,} )
