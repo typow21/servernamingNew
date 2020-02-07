@@ -19,7 +19,7 @@ def displaylinux(request):
     servers = ServerDetails.objects.all()
     columnSets = models.createArrayOfSets(servers) 
     currentInstance = ServerDetails.objects.last()
-    return render(request, "detailsapp/template/displaylinux.html", {'columnSets':columnSets, 'currentServer':currentInstance})
+    return render(request, "detailsapp/template/displayLinux.html", {'columnSets':columnSets, 'currentServer':currentInstance})
     
 def displaywindows(request):
     servers = ServerDetails.objects.all()
