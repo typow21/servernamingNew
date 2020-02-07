@@ -89,7 +89,7 @@ def checkDuplicates(currentInstance):
                                 purpose = currentInstance.purpose,
                                     role = currentInstance.role,
                                         sequence = currentInstance.sequence).count()
-    if numOfMatches > 1:
+    if numOfMatches >= 1:
         if numOfMatches > 2:
             print("Error: Duplicate server name.")
             # add a js alert here as a notice
@@ -97,18 +97,20 @@ def checkDuplicates(currentInstance):
         
     return duplicate
 
+#function called when the currentInstance is a duplicated
+#makes user 
 def updateSequence(currentInstance):
     # print("reached 1")
     currentInstSequence = currentInstance.sequence
+    #convert string to 3 ints
     firstDig = int(currentInstSequence[0])
     secondDig = int(currentInstSequence[1])
     thirdDig = int(currentInstSequence[2])
+    #decimal logic addition
+    #since currentInstSequence is a str you can't just increment normally
     if thirdDig < 9: #if less than 9
         thirdDig += 1 # increment by one
-        print("\treached 2")
-        # print("\t", thirdDig)
     else: #if number is 9
-        # print("reached 3")
         thirdDig = 0 #make it a zero
         if secondDig < 9:# if less than 9
             secondDig += 1 # increment
@@ -118,7 +120,7 @@ def updateSequence(currentInstance):
                 print("Error: Ran out of Server Names")
                 quit()
             firstDig += 1
-
+    #convert back to string
     firstDigStr = str(firstDig)
     secondDigStr = str(secondDig)
     thirdDigStr = str(thirdDig)
