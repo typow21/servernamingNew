@@ -4,9 +4,11 @@
 
 <h2>Server Naming</h2>
 
-<form action="./results/" method="post">
+<form action="/form/" method="post">
 	{% csrf_token %}
-	{{form}}
+	<table>
+        {{form.as_table}}
+    </table>
 	<input type="submit" value="Submit">
   </fieldset>
 </form>

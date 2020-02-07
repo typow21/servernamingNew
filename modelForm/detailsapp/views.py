@@ -59,7 +59,7 @@ def form(request):
             print("column sets", columnSets[0])
             if (currentInstance.ident[0] == "w"):
                 print("windows\n")
-                return HttpResponseRedirect('/displaywindows')
+                return HttpResponseRedirect('/displaywindows/')
             else:
                 print("linux\n")
                 return HttpResponseRedirect('/displaylinux/')    
