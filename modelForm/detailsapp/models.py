@@ -90,12 +90,10 @@ def checkDuplicates(currentInstance):
                                     role = currentInstance.role,
                                         sequence = currentInstance.sequence).count()
     if numOfMatches > 1:
-        if numOfMatches >= 2:
+        if numOfMatches > 2:
             print("Error: Duplicate server name.")
             # add a js alert here as a notice
-        # newSequence = updateSequence(currentInstance)
         duplicate = True
-        # print("Current Inst Seq: ", newSequence)
         
     return duplicate
 
