@@ -71,7 +71,18 @@ def classifyServer(currentInstance):
     currentInstance.ident = classifier.get(currentInstance.purpose+currentInstance.role+currentInstance.OS)
     print("classification: ", currentInstance.ident)
 
+def classifMap():
+    indexForArrayOfSetsMap = {'wpw': 0, 'wpa': 1, 'wpd': 2, 'wps': 3,  #windows prod
+                "wnw":4, "wna":5 , "wnd":6,  "wns":7, #windows non prod
+                "wtw":8,  "wta":9,  "wtd":10, "wts":11, #windos test
+                "lpw":12,  "lpa":13,  "lpd": 14, "lps": 15,  #linux prod
+                "lnw":16, "lna": 17,  "lnd":18,  "lns":19, #linux non prod
+               "ltw":20, "lta":21, "ltd":22, "lts":23}
+    print(indexForArrayOfSetsMap.get('wpw'))
+    return indexForArrayOfSetsMap
+
 def createArrayOfSets(servers):
+    # explain 2 letter combo
     columnSets = [
     servers.filter(ident = "wpw"),servers.filter(ident = "wpa"),servers.filter(ident = "wpd"),servers.filter(ident = "wps"),
     servers.filter(ident = "wnw"),servers.filter(ident = "wna"),servers.filter(ident = "wnd"),servers.filter(ident = "wns"),
@@ -83,18 +94,18 @@ def createArrayOfSets(servers):
 
 def checkDuplicates(currentInstance):
     duplicate = False
-    newSequence = currentInstance.sequence
-    numOfMatches = ServerDetails.objects.filter(
+    # newSequence = currentInstance.sequence
+    serverFilter = ServerDetails.objects.filter( 
                             OS = currentInstance.OS, 
                                 purpose = currentInstance.purpose,
                                     role = currentInstance.role,
-                                        sequence = currentInstance.sequence).count()
-    if numOfMatches >= 1:
-        if numOfMatches > 2:
-            print("Error: Duplicate server name.")
-            # add a js alert here as a notice
-        duplicate = True
-        
+                                        sequence = currentInstance.sequence)
+    for server in serverFilter:
+        print("Models: checkDuplicates: Server Set: \n"+server.serverName)
+    numOfMatches = serverFilter.count()
+    print("Models: checkDuplicates: Number of matches:",numOfMatches)        
+    if(numOfMatches > 0):
+        duplicate = True;
     return duplicate
 
 #function called when the currentInstance is a duplicated
@@ -102,6 +113,7 @@ def checkDuplicates(currentInstance):
 def updateSequence(currentInstance):
     # print("reached 1")
     currentInstSequence = currentInstance.sequence
+
     #convert string to 3 ints
     firstDig = int(currentInstSequence[0])
     secondDig = int(currentInstSequence[1])
