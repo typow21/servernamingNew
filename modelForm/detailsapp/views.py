@@ -88,18 +88,18 @@ def form(request):
             # print("column sets", columnSets[currentColumIndex.get(currentInstance.ident)])
 
             #if the ident starts with w it is windows so it redirects to the windows db
-            if (currentInstance.ident[0] == "w"):
-                print("windows\n")
-                return HttpResponseRedirect('/displaywindows/')
+            # if (currentInstance.ident[0] == "w"):
+            #     print("windows\n")
+            #     return HttpResponseRedirect('/displaywindows/')
 
-            #if the ident starts with l it is linux so it redirects to the linux db
-            else:
-                print("linux\n")
-                return HttpResponseRedirect('/displaylinux/')   
+            # #if the ident starts with l it is linux so it redirects to the linux db
+            # else:
+            #     print("linux\n")
+            #     return HttpResponseRedirect('/displaylinux/')   
 
             # if you want it to just direct to the current server name comment out logic
             # and uncomment next line
-            # return HttpResponseRedirect('/displayserver/')
+            return HttpResponseRedirect('/displayserver/')
     else:
         form_class = ServerModelForm
         error = ""
