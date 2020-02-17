@@ -14,7 +14,7 @@ class ServerDetails(models.Model):
     prd = "001"
     np = "100"
     test = "111"
-    
+
     OpSys  = (
     (blank,"--"),
     (linux, "Linux/Unix"),
@@ -56,6 +56,9 @@ class ServerDetails(models.Model):
     # alias = models.CharField(max_length = 15, default="Alias") future feature
     #Status = models.CharField(max_length = 30, default = "running")
     print("ident",ident)
+    def __str__(self):
+        serverIdent = self.ident +self.sequence
+        return serverIdent
     def assignName(self):
         serverName = self.tu + self.purpose + self.role + self.OS + self.sequence
         return serverName
