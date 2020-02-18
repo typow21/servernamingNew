@@ -15,7 +15,9 @@
 **admin.py:**
 
     *Username:* admin
+
     *Password:* TUios2020
+    
     This page gives us access to the database directly. It comes pre-implemented with Django. We are able to edit inputs, delete inputs, and can add timestamps to when servers were created. The admin page is fairly customizable but is currently in the default layout.
 
 **Database:**
