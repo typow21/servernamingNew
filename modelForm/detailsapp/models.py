@@ -55,6 +55,7 @@ class ServerDetails(models.Model):
     ident = models.CharField(max_length = 15, default ="")
     # alias = models.CharField(max_length = 15, default="Alias") future feature
     #Status = models.CharField(max_length = 30, default = "running")
+    serverIdent = models.CharField(max_length=100, default="")
     print("ident",ident)
     def __str__(self):
         serverIdent = self.ident +self.sequence

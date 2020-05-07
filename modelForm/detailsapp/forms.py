@@ -10,6 +10,10 @@ class ServerModelForm(ModelForm):
         class Meta:
                 model = ServerDetails
                 fields = ['OS','purpose','role']
+
+# class selectionForm(ModelForm):
+#         class Meta:
+
                 
 
 

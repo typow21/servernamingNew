@@ -23,12 +23,47 @@ def displaylinux(request):
     columnSets = models.createArrayOfSets(servers) 
     currentInstance = ServerDetails.objects.last()
     return render(request, "detailsapp/template/displayLinux.html", {'columnSets':columnSets, 'currentServer':currentInstance})
+
+def displaylinuxedit(request):
+    print("\n")
+    print(request)
+    print("\n")
+    if request.method == 'POST':
+        form = ServerModelForm(request.POST)
+        if form.is_valid():
+            u = form.save()
+            return HttpResponseRedirect('/displaylinux/')
+    else:
+        form_class = ServerModelForm
+        error = ""
+        servers = ServerDetails.objects.all()
+        columnSets = models.createArrayOfSets(servers) 
+        currentInstance = ServerDetails.objects.last()
+        return render(request, 'detailsapp/template/displayLinuxSelect.html' , {'form':form_class, 'columnSets':columnSets, 'currentServer':currentInstance} )
     
+
 def displaywindows(request):
     servers = ServerDetails.objects.all()
     columnSets = models.createArrayOfSets(servers) 
     currentInstance = ServerDetails.objects.last()
     return render(request, "detailsapp/template/displaywindows.html", {'columnSets':columnSets, 'currentServer':currentInstance})
+
+def displaywindowsedit(request):
+    if request.method == 'POST':
+        print("\n",request.POST)
+        # form = ServerModelForm(request.POST)
+        if form.is_valid():
+            u = form.save()
+            # print("\n",request)
+            return HttpResponseRedirect('/displaywindows/')
+    else:
+        form_class = ServerModelForm
+        error = ""
+        servers = ServerDetails.objects.all()
+        columnSets = models.createArrayOfSets(servers) 
+        currentInstance = ServerDetails.objects.last()
+        return render(request, 'detailsapp/template/displaywindowsSelect.html' , {'form':form_class, 'columnSets':columnSets, 'currentServer':currentInstance} )
+
 
 # add a delete button
 # add an export option
@@ -104,3 +139,4 @@ def form(request):
         form_class = ServerModelForm
         error = ""
         return render(request, 'detailsapp/template/form.html' , {'form':form_class} )
+
