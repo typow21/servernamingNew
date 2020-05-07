@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Server Naming Form</title>
+</head>
+<body>
+  <nav>
+    <button onclick="window.location.href = '/home/';" style="font-size: large;">Home</button>
+    <button onclick="window.location.href = '/form/';" style="font-size: large;">Server Naming Form</button>
+    <button onclick="window.location.href = '/displayserver/';"" style="font-size: large;">Last created server name</button>
+    <button onclick="window.location.href = '/displaylinux/';" style="font-size: large;">Linux Servers</button>
+    <button onclick="window.location.href = '/displaywindows/';" style="font-size: large;">Windows Servers</button>
+    <!-- This button does not work currently -->
+    <!-- <button onclick="window.location.href = '/displaylinux/';" style="font-size: large;">Export database</button>
+    <button onclick="window.location.href = '/displaylinux/';" style="font-size: large;">Audit</button> -->
+    <button onclick="window.location.href = '/admin/';" style="font-size: large;">Admin</button>
+</nav>
+  <hr>
+    <h1>Created Server Name: {{currentServer.serverName}}</h1>
+    <!-- <button onclick="window.location.href = '/form/';" style="font-size: large;">Create another server name</button>
+    <button onclick="window.location.href = '/displaywindows/';" style="font-size: large;">Windows Servers</button>
+    <button onclick="window.location.href = '/displaylinux/';"" style="font-size: large;">Linux Servers</button> -->
+</body>
+</html>
+
