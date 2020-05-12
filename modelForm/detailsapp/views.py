@@ -1,5 +1,5 @@
 import csv
-from datetime import date
+from datetime import date, datetime
 from django.shortcuts import render
 from django.db import models
 from detailsapp.models import ServerDetails
@@ -26,47 +26,12 @@ def displaylinux(request):
     currentInstance = ServerDetails.objects.last()
     return render(request, "detailsapp/template/displayLinux.html", {'columnSets':columnSets, 'currentServer':currentInstance})
 
-def displaylinuxedit(request):
-    print("\n")
-    print(request)
-    print("\n")
-    if request.method == 'POST':
-        form = ServerModelForm(request.POST)
-        if form.is_valid():
-            u = form.save()
-            return HttpResponseRedirect('/displaylinux/')
-    else:
-        form_class = ServerModelForm
-        error = ""
-        servers = ServerDetails.objects.all()
-        columnSets = models.createArrayOfSets(servers) 
-        currentInstance = ServerDetails.objects.last()
-        return render(request, 'detailsapp/template/displayLinuxSelect.html' , {'form':form_class, 'columnSets':columnSets, 'currentServer':currentInstance} )
-    
 
 def displaywindows(request):
     servers = ServerDetails.objects.all()
     columnSets = models.createArrayOfSets(servers) 
     currentInstance = ServerDetails.objects.last()
     return render(request, "detailsapp/template/displaywindows.html", {'columnSets':columnSets, 'currentServer':currentInstance})
-
-def displaywindowsedit(request):
-    if request.method == 'POST':
-        print("\n",request.POST)
-        # form = ServerModelForm(request.POST)
-        if form.is_valid():
-            u = form.save()
-            # print("\n",request)
-            return HttpResponseRedirect('/displaywindows/')
-    else:
-        form_class = ServerModelForm
-        error = ""
-        servers = ServerDetails.objects.all()
-        columnSets = models.createArrayOfSets(servers) 
-        currentInstance = ServerDetails.objects.last()
-        return render(request, 'detailsapp/template/displaywindowsSelect.html' , {'form':form_class, 'columnSets':columnSets, 'currentServer':currentInstance} )
-
-
 
 # Exports windows table
 def windowsTableDownload(request):
@@ -78,6 +43,7 @@ def windowsTableDownload(request):
     response['Content-Disposition'] = 'attachment; filename = ' + filename  # This is the name of the attachment
 
     writer = csv.writer(response, delimiter = ',')
+    writer.writerow(['Date', today,'Time Stamp:', datetime.now().time()])
     writer.writerow(['Windows Servers'])
     writer.writerow(['Production Web'])
     pw_servers = ServerDetails.objects.filter(ident = 'wpw')
