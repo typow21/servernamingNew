@@ -1,3 +1,5 @@
+import csv
+from datetime import date
 from django.shortcuts import render
 from django.db import models
 from detailsapp.models import ServerDetails
@@ -65,8 +67,154 @@ def displaywindowsedit(request):
         return render(request, 'detailsapp/template/displaywindowsSelect.html' , {'form':form_class, 'columnSets':columnSets, 'currentServer':currentInstance} )
 
 
-# add a delete button
-# add an export option
+
+# Exports windows table
+def windowsTableDownload(request):
+    windowServers = ServerDetails.objects.filter(OS = 30) # gets all server not just windows servers
+    response = HttpResponse(content_type = 'text/csv')
+    today = date.today()
+    today = str(today)
+    filename = "windows"+today+".csv"
+    response['Content-Disposition'] = 'attachment; filename = ' + filename  # This is the name of the attachment
+
+    writer = csv.writer(response, delimiter = ',')
+    writer.writerow(['Windows Servers'])
+    writer.writerow(['Production Web'])
+    pw_servers = ServerDetails.objects.filter(ident = 'wpw')
+    for server in pw_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Production App'])
+    pa_servers = ServerDetails.objects.filter(ident = 'wpa')
+    for server in pa_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Production Database'])
+    pd_servers = ServerDetails.objects.filter(ident = 'wpd')
+    for server in pd_servers:
+       writer.writerow([server.serverName])
+
+    writer.writerow(['Production Stroage'])  
+    ps_servers = ServerDetails.objects.filter(ident = 'wps')
+    for server in ps_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Non-production Web'])
+    npw_servers = ServerDetails.objects.filter(ident = 'wnw')
+    for server in npw_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Non-production App'])
+    npa_servers = ServerDetails.objects.filter(ident = 'wna')
+    for server in npa_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Non-production Database'])
+    npd_servers = ServerDetails.objects.filter(ident = 'wnd')
+    for server in npd_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Non-production Stroage']) 
+    nps_servers = ServerDetails.objects.filter(ident = 'wns')
+    for server in nps_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Test Web'])
+    tw_servers = ServerDetails.objects.filter(ident = 'wtw')
+    for server in tw_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Test App'])
+    ta_servers = ServerDetails.objects.filter(ident = 'wta')
+    for server in ta_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Test Database'])
+    td_servers = ServerDetails.objects.filter(ident = 'wtd')
+    for server in td_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Test Stroage'])       
+    ts_servers = ServerDetails.objects.filter(ident = 'wts')
+    for server in ts_servers:
+        writer.writerow([server.serverName])
+
+    
+    return response
+
+# Exports linux table
+def linuxTableDownload(request):
+    # TO-DO
+    response = HttpResponse(content_type = 'text/csv')
+    today = date.today()
+    today = str(today)
+    filename = "linux"+today+".csv"
+    response['Content-Disposition'] = 'attachment; filename = ' + filename  # This is the name of the attachment
+
+    writer = csv.writer(response, delimiter = ',')
+    writer.writerow(['Linux Servers'])
+    writer.writerow(['Production Web'])
+    pw_servers = ServerDetails.objects.filter(ident = 'lpw')
+    for server in pw_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Production App'])
+    pa_servers = ServerDetails.objects.filter(ident = 'lpa')
+    for server in pa_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Production Database'])
+    pd_servers = ServerDetails.objects.filter(ident = 'lpd')
+    for server in pd_servers:
+       writer.writerow([server.serverName])
+
+    writer.writerow(['Production Stroage'])  
+    ps_servers = ServerDetails.objects.filter(ident = 'lps')
+    for server in ps_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Non-production Web'])
+    npw_servers = ServerDetails.objects.filter(ident = 'lnw')
+    for server in npw_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Non-production App'])
+    npa_servers = ServerDetails.objects.filter(ident = 'lna')
+    for server in npa_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Non-production Database'])
+    npd_servers = ServerDetails.objects.filter(ident = 'lnd')
+    for server in npd_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Non-production Stroage']) 
+    nps_servers = ServerDetails.objects.filter(ident = 'lns')
+    for server in nps_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Test Web'])
+    tw_servers = ServerDetails.objects.filter(ident = 'ltw')
+    for server in tw_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Test App'])
+    ta_servers = ServerDetails.objects.filter(ident = 'lta')
+    for server in ta_servers:
+        writer.writerow([server.serverName])
+
+    writer.writerow(['Test Database'])
+    td_servers = ServerDetails.objects.filter(ident = 'ltd')
+    for server in td_servers:
+        writer.writerow([server.serverName])
+        
+    writer.writerow(['Test Stroage'])       
+    ts_servers = ServerDetails.objects.filter(ident = 'lts')
+    for server in ts_servers:
+        writer.writerow([server.serverName])
+
+    
+    return response
 
 def form(request):
     if request.method == 'POST':
