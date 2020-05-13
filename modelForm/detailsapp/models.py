@@ -2,6 +2,7 @@
 from django.db import models
 
 class ServerDetails(models.Model):
+    # these map variables to their respective strings
     blank = "--"
     linux = "35"
     windows = "30"
@@ -15,6 +16,8 @@ class ServerDetails(models.Model):
     np = "100"
     test = "111"
 
+    # Populates the options for html drop down menu
+    # maps the drop down options to their string variable values
     OpSys  = (
     (blank,"--"),
     (linux, "Linux/Unix"),
@@ -34,7 +37,7 @@ class ServerDetails(models.Model):
     (storage, "Storage"),
     )
 
-    tu = models.CharField(max_length = 2, default = "tu")
+    tu = models.CharField(max_length = 2, default = "tu") # This does not change
     OS = models.CharField(
         max_length = 10,
         choices = OpSys,
@@ -54,17 +57,18 @@ class ServerDetails(models.Model):
     serverName = models.CharField(max_length = 100, default = "")
     ident = models.CharField(max_length = 15, default ="")
     # alias = models.CharField(max_length = 15, default="Alias") future feature
-    #Status = models.CharField(max_length = 30, default = "running")
     serverIdent = models.CharField(max_length=100, default="")
     print("ident",ident)
-    def __str__(self):
-        serverIdent = self.ident +self.sequence
-        return serverIdent
-    def assignName(self):
+    def assignName(self): # This is the string that gets shown on all html pages
         serverName = self.tu + self.purpose + self.role + self.OS + self.sequence
         return serverName
 
-def classifyServer(currentInstance):
+    def __str__(self): # This is the string that gets shown on the admin
+        serverName = self.tu + self.purpose + self.role + self.OS + self.sequence
+        return serverName
+
+
+def classifyServer(currentInstance): # currentInstance is the current server that is requesting a name
     #first char = os :: second char: purpose :: third char: role
     classifier={"0012030":"wpw", "0012130": "wpa", "0012230": "wpd", "0012330": "wps",  #windows prod
                 "1002030":"wnw", "1002130": "wna", "1002230": "wnd", "1002330": "wns", #windows non prod
@@ -75,6 +79,8 @@ def classifyServer(currentInstance):
     currentInstance.ident = classifier.get(currentInstance.purpose+currentInstance.role+currentInstance.OS)
     print("classification: ", currentInstance.ident)
 
+# This mapping is used when placing servers in the html table
+# Each ident is mapped to that servers index in the columnSets array that is created below
 def classifMap():
     indexForArrayOfSetsMap = {'wpw': 0, 'wpa': 1, 'wpd': 2, 'wps': 3,  #windows prod
                 "wnw":4, "wna":5 , "wnd":6,  "wns":7, #windows non prod
@@ -85,20 +91,22 @@ def classifMap():
     print(indexForArrayOfSetsMap.get('wpw'))
     return indexForArrayOfSetsMap
 
-def createArrayOfSets(servers):
-    # explain 2 letter combo
+# Creates an array (columnSets) of sets
+# the sets are each category of servers
+def createArrayOfSets(servers): # servers is the set of all servers in the database
     columnSets = [
-    servers.filter(ident = "wpw"),servers.filter(ident = "wpa"),servers.filter(ident = "wpd"),servers.filter(ident = "wps"),
-    servers.filter(ident = "wnw"),servers.filter(ident = "wna"),servers.filter(ident = "wnd"),servers.filter(ident = "wns"),
-    servers.filter(ident = "wtw"),servers.filter(ident = "wta"),servers.filter(ident = "wtd"),servers.filter(ident = "wts"),
-    servers.filter(ident = "lpw"),servers.filter(ident = "lpa"),servers.filter(ident = "lpd"),servers.filter(ident = "lps"),
-    servers.filter(ident = "lnw"),servers.filter(ident = "lna"),servers.filter(ident = "lnd"),servers.filter(ident = "lns"),
-    servers.filter(ident = "ltw"),servers.filter(ident = "lta"),servers.filter(ident = "ltd"),servers.filter(ident = "lts")]
+    servers.filter(ident = "wpw"), servers.filter(ident = "wpa"), servers.filter(ident = "wpd"), servers.filter(ident = "wps"),
+    servers.filter(ident = "wnw"), servers.filter(ident = "wna"), servers.filter(ident = "wnd"), servers.filter(ident = "wns"),
+    servers.filter(ident = "wtw"), servers.filter(ident = "wta"), servers.filter(ident = "wtd"), servers.filter(ident = "wts"),
+    servers.filter(ident = "lpw"), servers.filter(ident = "lpa"), servers.filter(ident = "lpd"), servers.filter(ident = "lps"),
+    servers.filter(ident = "lnw"), servers.filter(ident = "lna"), servers.filter(ident = "lnd"), servers.filter(ident = "lns"),
+    servers.filter(ident = "ltw"), servers.filter(ident = "lta"), servers.filter(ident = "ltd"), servers.filter(ident = "lts")]
     return columnSets
 
+# This checks for duplicates in the entire set of servers
+# called by updateSequence()
 def checkDuplicates(currentInstance):
     duplicate = False
-    # newSequence = currentInstance.sequence
     serverFilter = ServerDetails.objects.filter( 
                             OS = currentInstance.OS, 
                                 purpose = currentInstance.purpose,
@@ -112,10 +120,13 @@ def checkDuplicates(currentInstance):
         duplicate = True;
     return duplicate
 
-#function called when the currentInstance is a duplicated
-#makes user 
+# converts the last 3 number characters to ints
+# increments each individual int accordingly
+# converts the ints back into individual strings
+# combines the 3 different strings into one sequence string
+# returns the unique sequence to be added to the end of the server name
+# increments the sequence and rechecks for duplicats
 def updateSequence(currentInstance):
-    # print("reached 1")
     currentInstSequence = currentInstance.sequence
 
     #convert string to 3 ints

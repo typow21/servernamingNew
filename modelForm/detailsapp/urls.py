@@ -5,6 +5,7 @@ from detailsapp import views as detailsapp_views
 
 # This maps the urls to the views
 urlpatterns = [
+    path('',detailsapp_views.home), 
     path('home/', detailsapp_views.home),
     path('form/', detailsapp_views.form),
     path('displaywindows/', detailsapp_views.displaywindows),

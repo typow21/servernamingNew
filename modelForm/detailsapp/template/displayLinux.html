@@ -5,6 +5,8 @@
         <title>Linux Server Naming</title>
     </head>
     <body>
+        {% load static %}
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'displaylinux.css' %}">
         <nav>
             <button onclick="window.location.href = '/home/';" style="font-size: large;">Home</button>
             <button onclick="window.location.href = '/form/';" style="font-size: large;">Server Naming Form</button>
@@ -25,7 +27,8 @@
         <button onclick="window.location.href = '/displayserver/';"" style="font-size: large;">Last created server name</button> -->
         <br>
         <br>
-        <table border="1" width = "100%">
+        <div class="table">
+        <table border="1" width = "100%"> 
         <tr valign="top">
             <td>
                 <b><label>Production</label></b><br>
@@ -128,5 +131,6 @@
             </td>
         </tr>
         </table>
+        </div>
     </body>
 </html>

@@ -1,4 +1,15 @@
 <html>
-    <h1>Temple University IOS applications</h1>
-    <button onclick="window.location.href = '/form/';" style="font-size: large;">Server Naming Form</button>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>ITS Server Naming</title>
+      </head>
+    <body>
+        {% load static %}
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'display.css' %}">
+        <h1>Temple University IOS applications</h1>
+        <div class = "appCard" onclick="window.location.href = '/form/';">
+            <p>Server Naming Form</p>
+        </div>
+        <!-- <button onclick="window.location.href = '/form/';" style="font-size: large;">Server Naming Form</button> -->
+    </body>
 </html>

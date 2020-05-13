@@ -1,0 +1,43 @@
+body{
+    background-color: white;
+    text-align: center;
+}
+
+button {
+    /* border: 0px; */
+    border-radius: 5%;
+    position: relative;
+    top: 0;
+    font-size: large;
+    /* box-shadow: 1px 1px 1px; */
+    transition: width .5s;
+}
+button:hover{
+    box-shadow: 1px 1px 1px;
+}
+
+div.form {
+    font-size: larger;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    width: 20%;
+    height: 90%;
+    border-radius: 2%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 10px 20px 30px;
+    margin: auto;
+    margin-top: 5%;
+}
+
+table.table{
+    margin: 0 auto;
+}
+
+input.submit{
+}
+
+input.submit:hover{
+    
+    box-shadow: 1px 1px 4px rgb(85,85,85);
+}

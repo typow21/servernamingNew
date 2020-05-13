@@ -13,24 +13,31 @@ from detailsapp import models
 # from .forms import ServerNameForm
 # from .models import Server
 
+# Rederns the html for the home page
 def home(request):
     return render(request, "detailsapp/template/index.html", {})
 
+# Renders HTML page that displays the last made server
 def displayserver(request):
     currentInstance = ServerDetails.objects.last()
+    # Is this/does this need to be a relative path?
     return render(request, "detailsapp/template/displayserver.html", {'currentServer':currentInstance})
 
+# Renders HTML page that displays windows servers table
 def displaylinux(request):
     servers = ServerDetails.objects.all()
     columnSets = models.createArrayOfSets(servers) 
     currentInstance = ServerDetails.objects.last()
+    # Is this/does this need to be a relative path?
     return render(request, "detailsapp/template/displayLinux.html", {'columnSets':columnSets, 'currentServer':currentInstance})
 
-
+# Renders HTML page that displays windows servers table
+# Sends necessary data to the html page
 def displaywindows(request):
     servers = ServerDetails.objects.all()
     columnSets = models.createArrayOfSets(servers) 
     currentInstance = ServerDetails.objects.last()
+    # Does the link need to be a relative path?
     return render(request, "detailsapp/template/displaywindows.html", {'columnSets':columnSets, 'currentServer':currentInstance})
 
 # Exports windows table
@@ -118,6 +125,7 @@ def linuxTableDownload(request):
     response['Content-Disposition'] = 'attachment; filename = ' + filename  # This is the name of the attachment
 
     writer = csv.writer(response, delimiter = ',')
+    writer.writerow(['Date', today,'Time Stamp:', datetime.now().time()])
     writer.writerow(['Linux Servers'])
     writer.writerow(['Production Web'])
     pw_servers = ServerDetails.objects.filter(ident = 'lpw')
@@ -182,16 +190,14 @@ def linuxTableDownload(request):
     
     return response
 
+# This function deals with the form submission
+# NEED to add some more info
 def form(request):
     if request.method == 'POST':
         form = ServerModelForm(request.POST)
         if form.is_valid():
             u = form.save()
 
-
-            # i feel like this should be done in the model!!!!
-            # potential feature
-            # nameChecks()
             currentInstance = ServerDetails.objects.last()
             models.classifyServer(currentInstance)
 
@@ -200,15 +206,20 @@ def form(request):
                 print("\nBlank form submitted.\n\nForm Reset.\n")
                 form_class = ServerModelForm
                 error = "Please fill out all required fields"
-                return render(request, 'detailsapp/template/form.html' , {'form':form_class, 'error':error} )
+                print(currentInstance)
+                currentInstance.delete()
+                print(currentInstance)
+                return render(request, 'detailsapp/template/form.html' , {'form':form_class, 'error':error} ) # sends the error message to the html page and reloads page
 
             
-            servers = ServerDetails.objects.all()
-            columnSets = models.createArrayOfSets(servers) 
-            currentColumIndex = models.classifMap()
-            print("Views: current ident: ",currentInstance.ident)
+            servers = ServerDetails.objects.all() # loads set of all server names into the servers variable
+            columnSets = models.createArrayOfSets(servers) # creates an array of server sets categorized by column
+            currentColumIndex = models.classifMap() # maps each server category to an index
+            print("Views: current ident: ",currentInstance.ident) 
             print("Views: current server column index: ",currentColumIndex.get(currentInstance.ident))
-            currServSet = columnSets[currentColumIndex.get(currentInstance.ident)]
+
+            # Uses the current server's ident to return all servers in the set of current server category
+            currServSet = columnSets[currentColumIndex.get(currentInstance.ident)] 
 
             # checks for duplicates and updates sequence if one is found
             for server in currServSet:
@@ -225,7 +236,7 @@ def form(request):
             servers = ServerDetails.objects.all()
             currentInstance.save()
 
-            print("Current server name 2:",ServerDetails.objects.last().serverName)
+            # print("Current server name 2:",ServerDetails.objects.last().serverName)
             
             #returns an array of server sets -- each index is a set of servers with same ident
             #ident is the naming key for groups of servers
@@ -251,6 +262,5 @@ def form(request):
             return HttpResponseRedirect('/displayserver/')
     else:
         form_class = ServerModelForm
-        error = ""
         return render(request, 'detailsapp/template/form.html' , {'form':form_class} )
 
