@@ -21,7 +21,8 @@ def home(request):
 def displayserver(request):
     currentInstance = ServerDetails.objects.last()
     # Is this/does this need to be a relative path?
-    return render(request, "detailsapp/template/displayserver.html", {'currentServer':currentInstance})
+    print(currentInstance.time)
+    return render(request, "detailsapp/template/displayserver.html", {'currentServer':currentInstance, 'time': currentInstance.time})
 
 # Renders HTML page that displays windows servers table
 def displaylinux(request):
