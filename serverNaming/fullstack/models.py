@@ -1,6 +1,6 @@
 # Create your models here.
 from django.db import models
-
+from datetime import date, datetime
 class ServerDetails(models.Model):
     # these map variables to their respective strings
     blank = "--"
@@ -53,6 +53,9 @@ class ServerDetails(models.Model):
         choices = ROLE,
         default = blank,
     )
+    time = models.TimeField()
+    time = datetime.now()
+    print("Models time:" + str(time))
     sequence = models.CharField(max_length = 100, default = "000")
     serverName = models.CharField(max_length = 100, default = "")
     ident = models.CharField(max_length = 15, default ="")
