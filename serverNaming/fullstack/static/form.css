@@ -12,6 +12,7 @@ button {
     /* box-shadow: 1px 1px 1px; */
     transition: width .5s;
 }
+
 button:hover{
     box-shadow: 1px 1px 1px;
 }
@@ -33,8 +34,7 @@ div.form {
 }
 
 div.form:hover{
-    box-shadow: 2px 5px 10px black;
-    margin-top: 4.7%;
+    box-shadow: 1px 2px 12px black;
 }
 
 table.table{
@@ -43,6 +43,7 @@ table.table{
 
 input.submit{
 }
+
 input.submit:hover{
     
     box-shadow: 1px 1px 4px rgb(85,85,85);
