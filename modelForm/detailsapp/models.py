@@ -53,14 +53,18 @@ class ServerDetails(models.Model):
         choices = ROLE,
         default = blank,
     )
-    time = models.TimeField()
-    time = datetime.now()
-    print("Models time:" + str(time))
+
+    # time = models.TimeField() 
+    # time = datetime.now()
+    # name-of-creator = models.CharField(max_length = 100, default = "") # could add the name of creator here
+    # print("Models time:" + str(time))
+
     sequence = models.CharField(max_length = 100, default = "000")
     serverName = models.CharField(max_length = 100, default = "")
     ident = models.CharField(max_length = 15, default ="")
     # alias = models.CharField(max_length = 15, default="Alias") future feature
-    serverIdent = models.CharField(max_length=100, default="")
+    # serverIdent = models.CharField(max_length=100, default="")
+    # serverIdent = 
     print("ident",ident)
     def assignName(self): # This is the string that gets shown on all html pages
         serverName = self.tu + self.purpose + self.role + self.OS + self.sequence
@@ -91,7 +95,7 @@ def classifMap():
                 "lpw":12,  "lpa":13,  "lpd": 14, "lps": 15,  #linux prod
                 "lnw":16, "lna": 17,  "lnd":18,  "lns":19, #linux non prod
                "ltw":20, "lta":21, "ltd":22, "lts":23}
-    print(indexForArrayOfSetsMap.get('wpw'))
+    # print(indexForArrayOfSetsMap.get('wpw')) test
     return indexForArrayOfSetsMap
 
 # Creates an array (columnSets) of sets
